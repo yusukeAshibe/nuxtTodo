@@ -17,9 +17,6 @@
 import Vue from "vue";
 export default Vue.extend({
   middleware: ["auth-filter"],
-  created() {
-    const age = this.$accessor.age.age;
-    this.$accessor.age.hoge();
-  }
+  created() {}
 });
 </script>

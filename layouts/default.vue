@@ -78,29 +78,19 @@ export default Vue.extend({
       userName: String,
       items: [
         {
-          icon: "mdi-apps",
+          icon: "mdi-account-child-circle",
           title: "Welcome",
           to: "/"
         },
         {
-          icon: "mdi-chart-bubble",
-          title: "Inspire",
-          to: "/inspire"
-        },
-        {
-          icon: "mdi-chart-bubble",
-          title: "booksApi",
-          to: "/booksApi"
-        },
-        {
-          icon: "mdi-chart-bubble",
+          icon: "mdi-smart-card",
           title: "Todo",
           to: "/todo"
         },
         {
           icon: "mdi-chart-bubble",
-          title: "logout",
-          to: "/"
+          title: "booksApi",
+          to: "/booksApi"
         }
       ],
       miniVariant: false,
