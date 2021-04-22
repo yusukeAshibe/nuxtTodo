@@ -26,7 +26,13 @@ module.exports = {
   plugins: [
     "~/plugins/firebase.ts",
     "~/plugins/axios-accessor",
-    { src: "~plugins/localStorage", ssr: false }
+    {
+      src: "~plugins/localStorage",
+      ssr: false
+    },
+    { src: "~plugins/v-calendar.js", ssr: false },
+    { src: "~/plugins/vue2-google-maps.js" },
+    { src: "~/plugins/vuejs-datepicker.js", mode: "client", ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -71,6 +77,8 @@ module.exports = {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    extend(config, ctx) {},
+    vendor: ["vue2-google-maps"],
     transpile: [/typed-vuex/]
   },
   auth: {

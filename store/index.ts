@@ -1,7 +1,6 @@
 import { getAccessorType } from 'typed-vuex'
 import * as user from '@/store/user';
 import * as todo from '@/store/todo';
-import * as age from '@/store/age';
 
 import { Store } from 'vuex'
 // import { initializeStores } from '~/utils/store-accessor'
@@ -22,6 +21,5 @@ export const accessorType = getAccessorType({
     modules: {
         user,
         todo,
-        age
     },
 })

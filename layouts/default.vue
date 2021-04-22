@@ -91,6 +91,11 @@ export default Vue.extend({
           icon: "mdi-chart-bubble",
           title: "booksApi",
           to: "/booksApi"
+        },
+        {
+          icon: "mdi-chart-bubble",
+          title: "searchAddress",
+          to: "/searchAddress"
         }
       ],
       miniVariant: false,
