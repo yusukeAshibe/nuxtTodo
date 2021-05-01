@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "todo-ca05a"
+    "default": "todo-ca05a",
+    "a": "todo-ca05a"
   }
 }

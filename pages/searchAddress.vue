@@ -88,7 +88,8 @@ export default Vue.extend({
           console.log(err);
         });
     }
-  }
+  },
+  middleware: ["auth-filter"]
 });
 </script>
 

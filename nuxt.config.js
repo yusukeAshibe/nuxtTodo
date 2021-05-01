@@ -50,7 +50,7 @@ module.exports = {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    "@nuxtjs/axios"
+    "@nuxtjs/axios",
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -77,7 +77,7 @@ module.exports = {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    extend(config, ctx) {},
+    extend(config, ctx) { },
     vendor: ["vue2-google-maps"],
     transpile: [/typed-vuex/]
   },
@@ -92,5 +92,5 @@ module.exports = {
       // 省略
     },
     vuex: false // これを追加
-  }
+  },
 };
