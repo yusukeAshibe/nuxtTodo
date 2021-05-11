@@ -53,9 +53,7 @@
       <v-list>
         <v-list-item @click.native="right = !right">
           <v-list-item-action>
-            <v-icon light>
-              mdi-repeat
-            </v-icon>
+            <v-icon light> mdi-repeat </v-icon>
           </v-list-item-action>
           <v-list-item-title>Switch drawer (click me)</v-list-item-title>
         </v-list-item>
@@ -69,6 +67,7 @@
 
 <script lang="ts">
 import Vue from "vue";
+import firebase from "@/plugins/firebase";
 export default Vue.extend({
   data() {
     return {
@@ -80,38 +79,52 @@ export default Vue.extend({
         {
           icon: "mdi-account-child-circle",
           title: "Welcome",
-          to: "/"
+          to: "/",
         },
         {
           icon: "mdi-smart-card",
           title: "Todo",
-          to: "/todo"
+          to: "/todo",
+        },
+        {
+          icon: "mdi-chart-bubble",
+          title: "wordbook",
+          to: "/wordbook",
         },
         {
           icon: "mdi-chart-bubble",
           title: "booksApi",
-          to: "/booksApi"
+          to: "/booksApi",
         },
         {
           icon: "mdi-chart-bubble",
           title: "searchAddress",
-          to: "/searchAddress"
-        }
+          to: "/searchAddress",
+        },
+        // {
+        //   icon: "mdi-format-list-bulleted",
+        //   title: "Pokemons",
+        //   to: "/pokemons",
+        // },
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: "Vuetify.js"
+      title: "Vuetify.js",
     };
   },
   methods: {
+    // logout() {
+    //   firebase.auth().signOut();
+    // },
+
     logout() {
       console.log("logout");
       this.$accessor.user.drop();
-      this.$router.push("/");
-    }
+      (this as any).$router.push("/");
+    },
   },
-  created() {}
+  created() {},
   //middleware: ["auth-filter"]
 });
 </script>

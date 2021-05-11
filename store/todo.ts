@@ -11,7 +11,7 @@ export type RootState = ReturnType<typeof state>
 
 //addtodoの際の引数
 interface Obj {
-    task: string
+    text: string
     userId: string
 }
 
@@ -45,7 +45,7 @@ export const mutations = mutationTree(state, {
             // リストがない場合、id = 1
             // リストがある場合、id = リストの最終要素の id + 1
             id: state.todos.length === 0 ? 1 : state.todos[state.todos.length - 1].id + 1,
-            text: obj.task as string,
+            text: obj.text as string,
             done: 0,
             memo: "",
             registerDate: Date.now(),
@@ -53,7 +53,6 @@ export const mutations = mutationTree(state, {
             userId: obj.userId
         }
         // リストに Todo を追加
-
         state.todos.push(todo);
     },
 

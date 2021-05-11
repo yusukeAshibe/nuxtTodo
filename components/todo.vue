@@ -8,10 +8,10 @@
       <v-text-field
         class="task"
         type="text"
-        name="task"
+        name="text"
         id="addTask"
         placeholder="タスクを追加"
-        v-model="task"
+        v-model="text"
       />
       <v-btn id="addButton" class="button button--green" @click="addTodo()"
         >追加</v-btn
@@ -20,18 +20,10 @@
     <br />
     <div class="Filter">
       <v-row align="center" justify="space-around">
-        <v-btn depressed @click="doneFilter(100)">
-          すべて
-        </v-btn>
-        <v-btn depressed color="primary" @click="doneFilter(0)">
-          作業前
-        </v-btn>
-        <v-btn depressed color="error" @click="doneFilter(1)">
-          作業中
-        </v-btn>
-        <v-btn depressed color="warning" @click="doneFilter(2)">
-          完了！
-        </v-btn>
+        <v-btn depressed @click="doneFilter(100)"> すべて </v-btn>
+        <v-btn depressed color="primary" @click="doneFilter(0)"> 作業前 </v-btn>
+        <v-btn depressed color="error" @click="doneFilter(1)"> 作業中 </v-btn>
+        <v-btn depressed color="warning" @click="doneFilter(2)"> 完了！ </v-btn>
       </v-row>
     </div>
     <br />
@@ -82,10 +74,11 @@ import Vue from "vue";
 import { Todo } from "~/models/Todo";
 import dayjs from "~/node_modules/dayjs";
 import Loading from "~/components/Logo.vue";
+import firebase from "@/plugins/firebase";
 
 export default Vue.extend({
   components: {
-    Loading
+    Loading,
   },
   data() {
     return {
@@ -93,17 +86,17 @@ export default Vue.extend({
         {
           align: "start",
           sortable: false,
-          value: "name"
+          value: "name",
         },
         { text: "Task内容", value: "text", sortable: false },
         { text: "完了フラグ", value: "done" },
         { text: "削除", value: "id", sortable: false },
-        { text: "登録日", value: "registerDate" }
+        { text: "登録日", value: "registerDate" },
       ],
-      task: "" as string,
+      text: "" as string,
       loading: false as boolean,
       todos: [] as Todo[],
-      userId: "" as string
+      userId: "" as string,
     };
   },
   computed: {},
@@ -117,16 +110,17 @@ export default Vue.extend({
   },
   methods: {
     //タスク追加
+
     addTodo() {
-      if (this.task) {
+      if (this.text) {
         const Obj = {
-          task: this.task as string,
-          userId: this.$accessor.user.id as string
+          text: this.text as string,
+          userId: this.$accessor.user.id as string,
         };
         this.$accessor.todo.addTodo(Obj);
-        this.task = "";
+        this.text = "";
         this.todos = this.$accessor.todo.todos.filter(
-          todo => todo.userId == this.$accessor.user.id
+          (todo) => todo.userId == this.$accessor.user.id
         );
       }
     },
@@ -161,15 +155,15 @@ export default Vue.extend({
         .then(() => {
           if (num == 100) {
             this.todos = this.$accessor.todo.todos.filter(
-              todo => todo.userId == this.$accessor.user.id
+              (todo) => todo.userId == this.$accessor.user.id
             );
           } else {
             //完了フラグで絞り込み後USERIDで絞り込み
             var result = this.$accessor.todo.todos.filter(
-              todo => todo.done == num
+              (todo) => todo.done == num
             );
             result = result.filter(
-              todo => todo.userId == this.$accessor.user.id
+              (todo) => todo.userId == this.$accessor.user.id
             );
             this.todos = result;
           }
@@ -184,7 +178,7 @@ export default Vue.extend({
       if (result) {
         this.$accessor.todo.delete(todo);
         this.todos = this.$accessor.todo.todos.filter(
-          todo => todo.userId == this.$accessor.user.id
+          (todo) => todo.userId == this.$accessor.user.id
         );
       }
     },
@@ -194,14 +188,14 @@ export default Vue.extend({
       } else {
         return text.substring(0, 29) + "...";
       }
-    }
+    },
   },
   created() {
     this.userId = this.$accessor.user.id;
     this.todos = this.$accessor.todo.todos.filter(
-      todo => todo.userId == this.$accessor.user.id
+      (todo) => todo.userId == this.$accessor.user.id
     );
-  }
+  },
 });
 </script>
 <style>

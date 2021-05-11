@@ -3,6 +3,7 @@ import colors from "vuetify/es5/util/colors";
 module.exports = {
   // Target: https://go.nuxtjs.dev/config-target
   target: "static",
+  mode: 'universal',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -21,6 +22,8 @@ module.exports = {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
+  //loading関連
+  //loading: '~/components/Loading.vue',
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -51,6 +54,7 @@ module.exports = {
   modules: [
     // https://go.nuxtjs.dev/axios
     "@nuxtjs/axios",
+    '@nuxtjs/apollo',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -77,6 +81,12 @@ module.exports = {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    babel: {
+      plugins: [['@babel/plugin-proposal-private-methods', { loose: true }]],
+      presets({ isServer }, [preset, options]) {
+        options.loose = true
+      },
+    },
     extend(config, ctx) { },
     vendor: ["vue2-google-maps"],
     transpile: [/typed-vuex/]
@@ -92,5 +102,12 @@ module.exports = {
       // 省略
     },
     vuex: false // これを追加
+  },
+  apollo: {
+    clientConfigs: {
+      default: {
+        httpEndpoint: 'http://localhost:4000',
+      }
+    }
   },
 };

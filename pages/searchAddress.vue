@@ -1,6 +1,7 @@
 <template>
   <v-row justify="center" align="center">
     <v-col cols="12" sm="8" md="6">
+      <h1 class="title">地図検索</h1>
       <div class="text-center">
         <v-text-field
           placeholder="検索"
@@ -46,7 +47,7 @@ type GoogleGeocodingResponse = {
 export default Vue.extend({
   components: {
     Logo,
-    VuetifyLogo
+    VuetifyLogo,
   },
   data() {
     return {
@@ -57,12 +58,12 @@ export default Vue.extend({
       zoom: 16 as number,
       styleMap: {
         width: "100%",
-        height: "400px"
+        height: "400px",
       },
       mapOptions: {
         streetViewControl: false,
-        styles: []
-      }
+        styles: [],
+      },
     };
   },
   methods: {
@@ -75,7 +76,7 @@ export default Vue.extend({
             "&key=" +
             this.GOOGLE_API_KEY
         )
-        .then(response => {
+        .then((response) => {
           if (response.data.status !== "OK") {
             throw new Error("座標を取得できませんでした");
           }
@@ -83,13 +84,13 @@ export default Vue.extend({
           this.maplocation = coordinates;
           this.search = true;
         })
-        .catch(err => {
+        .catch((err) => {
           alert(err.message);
           console.log(err);
         });
-    }
+    },
   },
-  middleware: ["auth-filter"]
+  middleware: ["auth-filter"],
 });
 </script>
 

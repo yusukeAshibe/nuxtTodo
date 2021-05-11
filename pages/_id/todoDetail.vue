@@ -10,7 +10,7 @@
       />
     </v-col>
     <v-col cols="12">
-      <v-textarea label="メモ" outlined :counter="1000" v-model="memo" />
+      <v-textarea label="詳細" outlined :counter="1000" v-model="memo" />
       <v-btn @click.stop="update()" depressed color="primary">保存</v-btn>
     </v-col>
     <v-col cols="12">
@@ -32,14 +32,14 @@ export default Vue.extend({
       done: 0 as number,
       memo: "" as string,
       registerDate: 0 as number,
-      finishDate: 0 as number
+      finishDate: 0 as number,
     };
   },
   computed: {},
   created() {
-    this.id = Number(this.$route.params.id);
+    this.id = Number((this as any).$route.params.id);
     const searchTodo = this.$accessor.todo.todos.find(
-      todos => todos.id == this.id
+      (todos) => todos.id == this.id
     );
     if (searchTodo) {
       this.id = searchTodo.id as number;
@@ -59,24 +59,20 @@ export default Vue.extend({
         memo: this.memo as string,
         registerDate: this.registerDate as number,
         finishDate: Date.now(),
-        userId: this.$accessor.user.id
+        userId: this.$accessor.user.id,
       };
       this.$accessor.todo.updateTodo(updateTodo);
       alert("編集が完了しました");
-      this.$router.push("/todo");
+      (this as any).$router.push("/todo");
     },
     ViewRegisterDate(registerDate: number) {
       console.log("mesoddo");
-      return dayjs(registerDate)
-        .locale("ja")
-        .format("YYYY/MM/DD(dd) HH:mm:ss");
+      return dayjs(registerDate).locale("ja").format("YYYY/MM/DD(dd) HH:mm:ss");
     },
     ViewUpdateDate(finishDate: number) {
-      return dayjs(finishDate)
-        .locale("ja")
-        .format("YYYY/MM/DD(dd) HH:mm:ss");
-    }
-  }
+      return dayjs(finishDate).locale("ja").format("YYYY/MM/DD(dd) HH:mm:ss");
+    },
+  },
 });
 </script>
 <style></style>

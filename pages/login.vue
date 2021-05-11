@@ -15,6 +15,7 @@
 import Vue from "vue";
 
 import { Auth, Provider } from "@/services/auth";
+import firebase from "@/plugins/firebase";
 export default Vue.extend({
   data() {
     return {};
@@ -24,12 +25,12 @@ export default Vue.extend({
     async authGoogle() {
       const auth = new Auth(this.$accessor, {
         apiKey: "AIzaSyDg5eHzBW1KMBLlBn1Hqd3nVAGqSuwt7n8",
-        authDomain: "todo-ca05a.firebaseapp.com"
+        authDomain: "todo-ca05a.firebaseapp.com",
       });
       await auth.login(Provider.Google);
-      this.$router.push("/");
-    }
-  }
+      (this as any).$router.push("/");
+    },
+  },
 });
 </script>
 

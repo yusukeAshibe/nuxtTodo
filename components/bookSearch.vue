@@ -1,5 +1,6 @@
 <template>
   <v-col cols="12">
+    <h1 class="title">本の検索</h1>
     <v-text-field placeholder="検索" outlined v-model="bookName"></v-text-field>
     <v-col>
       <v-btn outlined color="error" class="widthButton" @click="search">
@@ -24,7 +25,7 @@ export default Vue.extend({
   data() {
     return {
       bookName: "",
-      booksData: []
+      booksData: [],
     };
   },
   methods: {
@@ -34,12 +35,12 @@ export default Vue.extend({
         .get(
           "https://www.googleapis.com/books/v1/volumes?q=search" + this.bookName
         )
-        .then(response => {
+        .then((response) => {
           this.booksData = response.data.items;
           console.log("検索結果", this.booksData);
         });
-    }
-  }
+    },
+  },
 });
 </script>
 <style>
