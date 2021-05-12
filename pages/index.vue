@@ -11,10 +11,10 @@
         <h5>ブランド名：{{ user.name }}</h5>
       </div-->
       <br />
-      <p><v-textarea outlined v-model="note_content"></v-textarea></p>
+      <!-- <p><v-textarea outlined v-model="note_content"></v-textarea></p>
       <p>
         <button @click="saveContent(note_content)">ノートを保存する</button>
-      </p>
+      </p> -->
     </div>
   </div>
 </template>
