@@ -1,4 +1,3 @@
-import { Timestamp } from "@google-cloud/firestore";
 
 export interface Memo {
     id: number

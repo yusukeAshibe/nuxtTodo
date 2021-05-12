@@ -25,7 +25,6 @@ import Vue from "vue";
 import dayjs from "~/node_modules/dayjs";
 import Loading from "~/components/Logo.vue";
 import firebase from "@/plugins/firebase";
-import { Timestamp } from "@google-cloud/firestore";
 import { Memo } from "~/models/Memo";
 
 export default Vue.extend({
@@ -58,7 +57,7 @@ export default Vue.extend({
     titleView(title: string) {
       return title;
     },
-    updatedAtView(updatedAt: Timestamp) {
+    updatedAtView(updatedAt: any) {
       var date = new Date(updatedAt.seconds * 1000);
       var viewDate =
         date.getFullYear() +
