@@ -5,16 +5,12 @@
       <h1 class="title">Hello, {{ $accessor.user.name }}</h1>
     </div>
     <div class="columns is-mobile">
-      <Calendar />
-      <!--div v-for="(user, key) in users" :key="key">
-        <h5>ID：{{ user.id }}</h5>
-        <h5>ブランド名：{{ user.name }}</h5>
-      </div-->
-      <br />
-      <!-- <p><v-textarea outlined v-model="note_content"></v-textarea></p>
-      <p>
-        <button @click="saveContent(note_content)">ノートを保存する</button>
-      </p> -->
+      <v-app>
+        <v-btn depressed color="primary" @click="externalLink">予定追加</v-btn>
+        <br />
+        <Calendar />
+      </v-app>
+      <!--Plan /-->
     </div>
   </div>
 </template>
@@ -22,6 +18,7 @@
 import Vue from "vue";
 import Logo from "~/components/Logo.vue";
 import Calendar from "~/components/calendar.vue";
+import Plan from "~/components/plan.vue";
 import firebase from "@/plugins/firebase";
 
 export default Vue.extend({
@@ -46,16 +43,21 @@ export default Vue.extend({
     const token = this.$accessor.user.token;
     const pic = this.$accessor.user.pic;
   },
-  // methods: {
-  //   saveContent: function (value: string) {
-  //     // 新しいテキストのためのキーを取得
-  //     var newNoteKey = firebase.database().ref().child("notes").push().key;
-  //     firebase
-  //       .database()
-  //       .ref("notes/" + this.$accessor.user.id + "/" + newNoteKey)
-  //       .set({ content: value });
-  //   },
-  // },
+  methods: {
+    saveContent: function (value: string) {
+      // 新しいテキストのためのキーを取得
+      var newNoteKey = firebase.database().ref().child("notes").push().key;
+      firebase
+        .database()
+        .ref("notes/" + this.$accessor.user.id + "/" + newNoteKey)
+        .set({ content: value });
+    },
+    externalLink() {
+      const url =
+        "https://docs.google.com/forms/d/e/1FAIpQLSdkFksd6C3zTBf-pml8m1g6Lgj7D3i2Hfl3WpMVHyEz0pPZ-w/viewform?usp=sf_link";
+      window.location.href = url;
+    },
+  },
   middleware: ["auth-filter"],
 });
 </script>

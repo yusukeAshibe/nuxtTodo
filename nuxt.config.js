@@ -55,6 +55,7 @@ module.exports = {
     // https://go.nuxtjs.dev/axios
     "@nuxtjs/axios",
     '@nuxtjs/apollo',
+    '@nuxtjs/dotenv',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
